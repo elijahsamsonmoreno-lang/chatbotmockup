@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TEIM Chatbot Mockup – Cedar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* ====== BASE STYLES ====== */
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --panel: #020617;
+      --panel-alt: #020617;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.14);
+      --accent-strong: #4ade80;
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border-subtle: #1f2937;
+      --bubble-user: #1d4ed8;
+      --bubble-bot: #111827;
+      --scrollbar-track: #020617;
+      --scrollbar-thumb: #374151;
+      --badge-bg: rgba(34, 197, 94, 0.12);
+      --badge-text: #bbf7d0;
+      --danger: #ef4444;
+      --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.7);
+      --radius-lg: 18px;
+      --radius-xl: 22px;
+      --radius-full: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* Centered app container */
+    .app-shell {
+      display: flex;
+      width: 100%;
+      max-width: 1160px;
+      min-height: 640px;
+      max-height: 780px;
+      background: radial-gradient(circle at top left, #020617 0, #020617 40%, #020617 100%);
+      border-radius: 32px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+      backdrop-filter: blur(22px);
+    }
+
+    /* Little glow behind logo area */
+    .app-shell::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top left, rgba(34, 197, 94, 0.18) 0, transparent 55%),
+        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.08) 0, transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ====== LAYOUT COLUMNS ====== */
+    .sidebar {
+      width: 300px;
+      background: linear-gradient(180deg, #020617 0%, #020617 45%, #020617 100%);
+      border-right: 1px solid var(--border-subtle);
+      padding: 20px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+      padding: 18px 20px 20px;
+    }
+
+    /* ====== SIDEBAR HEADER / BOT PROFILE ====== */
+    .bot-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .bot-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, #22c55e 0, #166534 45%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ecfdf5;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 12px 35px rgba(34, 197, 94, 0.65);
+      border: 1px solid rgba(187, 247, 208, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bot-avatar::before {
+      content: "";
+      position: absolute;
+      inset: 2px 7px 14px;
+      border-radius: 13px;
+      border: 1px solid rgba(248, 250, 252, 0.15);
+      opacity: 0.55;
+    }
+
+    .bot-title {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .bot-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .bot-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .badge-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-pill span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    .bot-desc {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-soft);
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+
+    .divider {
+      height: 1px;
+      background: radial-gradient(circle at center, #1f2937 0, #020617 80%);
+      margin: 6px 0 4px;
+      border-radius: 999px;
+    }
+
+    /* ====== TOPIC BUTTONS ====== */
+    .topic-group-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    .topic-btn {
+      width: 100%;
+      border-radius: 12px;
+      padding: 9px 9px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at top, #020617 0, #020617 65%, #020617 100%);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      cursor: pointer;
+      transition: all 0.14s ease-out;
+    }
+
+    .topic-btn:hover {
+      border-color: rgba(34, 197, 94, 0.8);
+      background: radial-gradient(circle at top left, rgba(22, 163, 74, 0.1) 0, #020617 55%);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.8);
+    }
+
+    .topic-title {
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    .topic-sub {
+      font-size: 0.72rem;
+      color: var(--text-soft);
+    }
+
+    /* ====== SIDEBAR FOOTER ====== */
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.72rem;
+      color: var(--text-soft);
+    }
+
+    .hint-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hint-pill {
+      border-radius: var(--radius-full);
+      padding: 4px 7px;
+      border: 1px dashed rgba(75, 85, 99, 0.9);
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    /* ====== MAIN CHAT AREA ====== */
+    .main-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .main-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .main-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .main-subtitle {
+      font-size: 0.76rem;
+      color: var(--text-soft);
+    }
+
+    .session-pill {
+      font-size: 0.72rem;
+      padding: 5px 9px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(55, 65, 81, 1);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9) 0, #020617 70%);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .session-pill strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .chat-shell {
+      flex: 1;
+      margin-top: 8px;
+      border-radius: 22px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%, #020617 100%);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chat-shell::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.1) 0, transparent 55%),
+        radial-gradient(circle at bottom left, rgba(34, 197, 94, 0.12) 0, transparent 55%);
+      pointer-events: none;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .chat-body {
+      flex: 1;
+      padding: 14px 16px 14px;
+      overflow-y: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chat-body::-webkit-scrollbar {
+      width: 8px;
+    }
+    .chat-body::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+    }
+    .chat-body::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 999px;
+    }
+
+    .chat-hint {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .chat-hint span {
+      color: var(--accent-strong);
+      font-weight: 500;
+    }
+
+    .message-row {
+      display: flex;
+      margin-bottom: 8px;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .message-row.user {
+      justify-content: flex-end;
+    }
+
+    .message-bubble {
+      max-width: 70%;
+      border-radius: 16px;
+      padding: 8px 11px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .message-meta {
+      font-size: 0.7rem;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    .message-bubble.bot {
+      background: var(--bubble-bot);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      border-bottom-left-radius: 4px;
+    }
+
+    .message-bubble.user {
+      background: var(--bubble-user);
+      color: #e5e7eb;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+    }
+
+    .tagline {
+      font-size: 0.72rem;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    /* ====== INPUT AREA ====== */
+    .chat-input-row {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 8px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: radial-gradient(circle at top, #020617 0, #020617 80%);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick-hints {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .quick-btn {
+      border-radius: var(--radius-full);
+      padding: 4px 8px;
+      border: 1px dashed rgba(55, 65, 81, 0.9);
+      font-size: 0.72rem;
+      color: #9ca3af;
+      background: rgba(15, 23, 42, 0.9);
+      cursor: pointer;
+      transition: all 0.12s ease-out;
+    }
+
+    .quick-btn:hover {
+      border-style: solid;
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #e5e7eb;
+      background: radial-gradient(circle at top, rgba(22, 163, 74, 0.22) 0, #020617 65%);
+      transform: translateY(-0.5px);
+    }
+
+    .input-row-inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .chat-input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 8px 12px;
+      font-size: 0.84rem;
+      background: rgba(15, 23, 42, 0.98);
+      color: #e5e7eb;
+      outline: none;
+      transition: all 0.14s ease-out;
+    }
+
+    .chat-input::placeholder {
+      color: #6b7280;
+    }
+
+    .chat-input:focus {
+      border-color: rgba(34, 197, 94, 0.9);
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.7);
+      background: #020617;
+    }
+
+    .send-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.9);
+      background: radial-gradient(circle at top, #22c55e 0, #15803d 55%, #14532d 100%);
+      color: #ecfdf5;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.4);
+      transition: all 0.14s ease-out;
+    }
+
+    .send-btn span.icon {
+      font-size: 0.92rem;
+      transform: translateY(1px);
+    }
+
+    .send-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(34, 197, 94, 0.6);
+    }
+
+    .send-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+    }
+
+    @media (max-width: 840px) {
+      body {
+        padding: 10px;
+      }
+      .app-shell {
+        flex-direction: column;
+        max-height: none;
+      }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .main {
+        padding: 14px 12px 14px;
+      }
+      .chat-shell {
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- ===== SIDEBAR: BOT PROFILE + TOPICS ===== -->
+    <aside class="sidebar">
+      <div>
+        <div class="bot-header">
+          <div class="bot-avatar">
+            CE
+          </div>
+          <div class="bot-title">
+            <div class="bot-name">Cedar</div>
+            <div class="bot-subtitle">TEIM Guide for Tribal Leaders</div>
+          </div>
+        </div>
+
+        <div class="badge-row">
+          <div class="badge-pill">
+            <span class="dot"></span>
+            TEIM-Powered
+          </div>
+          <div class="badge-pill">
+            Tribal Impact \& Law
+          </div>
+        </div>
+
+        <p class="bot-desc">
+          Ask Cedar to translate TEIM, multipliers, and federal Indian law into
+          language that works for council members, finance teams, and enterprise leadership.
+        </p>
+
+        <div class="divider"></div>
+
+        <div>
+          <div class="topic-group-label">Starter topics</div>
+          <div class="topic-grid">
+            <button class="topic-btn" data-topic="teim_intro">
+              <span class="topic-title">What is TEIM actually doing?</span>
+              <span class="topic-sub">Plain-language overview for a tribal audience.</span>
+            </button>
+            <button class="topic-btn" data-topic="multipliers">
+              <span class="topic-title">Tribal-specific multipliers</span>
+              <span class="topic-sub">Why we can’t just copy IMPLAN or state models.</span>
+            </button>
+            <button class="topic-btn" data-topic="law_context">
+              <span class="topic-title">Federal Indian law context</span>
+              <span class="topic-sub">Sovereignty, jurisdiction, and why it matters for data.</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="topic-group-label">Use cases</div>
+          <div class="topic-grid">
+            <button class="topic-btn" data-topic="council_briefing">
+              <span class="topic-title">Preparing a council briefing</span>
+              <span class="topic-sub">How to explain results in a 10-minute update.</span>
+            </button>
+            <button class="topic-btn" data-topic="finance_team">
+              <span class="topic-title">Working with finance staff</span>
+              <span class="topic-sub">Connecting TEIM outputs to budgets and reports.</span>
+            </button>
+            <button class="topic-btn" data-topic="data_sources">
+              <span class="topic-title">Data sources</span>
+              <span class="topic-sub">What goes into the model and what stays sovereign.</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="hint-line">
+          <span>Tip: ask like a councilmember would.</span>
+        </div>
+        <div class="hint-line">
+          <span class="hint-pill">Example: “How do I explain this chart to elders?”</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN: CHAT AREA ===== -->
+    <main class="main">
+      <header class="main-header">
+        <div class="main-title-block">
+          <div class="main-title">Session with Cedar</div>
+          <div class="main-subtitle">
+            Mockup – no backend. Scripted responses to help design flows and tone.
+          </div>
+        </div>
+        <div class="session-pill">
+          <span>Mode:</span> <strong>Tribal Economic Impact</strong>
+        </div>
+      </header>
+
+      <section class="chat-shell">
+        <div class="chat-body" id="chatBody">
+          <div class="chat-hint">
+            Cedar is a <span>front-end mockup only</span> right now. Type a question
+            below or click a topic on the left to see how canned replies and follow-ups could work.
+          </div>
+        </div>
+
+        <div class="chat-input-row">
+          <div class="quick-hints">
+            <button class="quick-btn" data-quick="Explain TEIM like I’m new to economic impact.">
+              “Explain TEIM in simple terms.”
+            </button>
+            <button class="quick-btn" data-quick="How do I explain this to Tribal Council?">
+              “How do I brief council?”
+            </button>
+            <button class="quick-btn" data-quick="What are reservation geography multipliers?">
+              “What is a reservation multiplier?”
+            </button>
+          </div>
+          <div class="input-row-inner">
+            <input
+              id="chatInput"
+              class="chat-input"
+              type="text"
+              placeholder="Ask about TEIM, multipliers, federal Indian law, or how to talk to tribal leaders..."
+            />
+            <button id="sendBtn" class="send-btn">
+              <span class="icon">➤</span>
+              Send
+            </button>
+          </div>
+        </div>
+      </section>
+      <p class="tagline">
+        Design note: later, this chat logic can be swapped to a Python backend or API without changing the visual shell.
+      </p>
+    </main>
+  </div>
+
+  <script>
+    // ===== SCRIPTED RESPONSES FOR TOPIC BUTTONS =====
+    const TOPIC_RESPONSES = {
+      teim_intro: {
+        user: "What is TEIM actually doing for our Nation?",
+        bot: [
+          "Great question. In plain terms, TEIM is a tribal-first economic impact system. Instead of copying state or county models, it builds around how *your* Nation actually governs, spends, and circulates money.",
+          "When a councilmember asks, “What does this number mean?”, TEIM is trying to answer:\n\n• How dollars move through tribal government, enterprises, and the community\n• What jobs, wages, and business activity those dollars support\n• How that impact differs on tribal land versus surrounding non-tribal areas\n\nSo TEIM is less about a generic multiplier and more about telling a sovereignty-aware story of your economic footprint."
+        ]
+      },
+      multipliers: {
+        user: "Why do we need tribal-specific multipliers instead of just IMPLAN?",
+        bot: [
+          "Most off-the-shelf models assume state and county boundaries, not tribal jurisdiction. That means they often:\n\n• Understate jobs and income tied to tribal enterprises\n• Mis-assign impacts to counties instead of tribal land\n• Miss flows between tribal government, enterprises, and households",
+          "Tribal-specific multipliers do three things differently:\n\n1. Treat the Tribe as a government with its own fiscal and legal powers\n2. Use tribal data (and tribal economic zones) instead of only county data\n3. Respect tribal boundaries and jurisdiction when tracking where impact lands",
+          "If you’re talking to a finance officer, you might say:\n“IMPLAN is fine for state budgeting, but it wasn’t built for sovereignty. TEIM is.”"
+        ]
+      },
+      law_context: {
+        user: "How does federal Indian law show up in this model?",
+        bot: [
+          "Federal Indian law shapes where the economy 'counts.' Jurisdiction affects:\n\n• Which government can tax or regulate activity\n• How trust land is treated\n• How federal funding and program rules apply",
+          "TEIM doesn’t just model dollars in a vacuum; it bakes in:\n\n• Tribal vs. state vs. federal roles\n• Trust vs. fee status\n• The way sovereignty redirects economic flows\n\nThat’s why the legal context matters – it changes the story the numbers are telling."
+        ]
+      },
+      council_briefing: {
+        user: "How do I explain TEIM to Tribal Council in 5–10 minutes?",
+        bot: [
+          "One simple structure you can use:\n\n1. Start with purpose: “This tool shows our economic footprint as a sovereign Nation, not just a business.”\n2. Tie to decisions: “It helps us compare scenarios — new projects, debt, federal funding — in our own terms.”\n3. Give one concrete example: “If we invest $X in this program, TEIM estimates Y jobs and Z in income on tribal land.”",
+          "Cedar’s rule of thumb: Council doesn’t need the formulas. They need:\n\n• What decision this helps with\n• Why tribal-specific modeling matters\n• What could change if we ignore our unique structure"
+        ]
+      },
+      finance_team: {
+        user: "How do finance staff actually use TEIM outputs?",
+        bot: [
+          "Finance staff usually care about alignment:\n\n• How TEIM outputs connect to audited financials\n• How scenarios show up in budgets and forecasts\n• How to explain differences between TEIM results and older IMPLAN-style studies",
+          "You might frame it like:\n\n“Think of TEIM as a translation layer. We take what you already track — revenues, expenditures, enterprise data — and convert it into an impact story that respects tribal jurisdiction and the way money moves through our community.”"
+        ]
+      },
+      data_sources: {
+        user: "What data goes into TEIM, and what stays sovereign?",
+        bot: [
+          "Inputs typically include:\n\n• Tribal financial and enterprise data (provided under data-sharing agreements)\n• Public sources like Tribal Economic Zones and Native Community Data Profiles\n• Carefully chosen external multipliers or benchmarks for comparison",
+          "A core principle is sovereignty over data:\n\n• The Tribe decides what can be shared externally\n• Internal datasets stay under tribal control\n• Public-facing results can be designed to protect sensitive details while still telling a powerful story"
+        ]
+      }
+    };
+
+    // ===== SIMPLE KEYWORD-BASED FALLBACKS FOR FREE-TEXT =====
+    const KEYWORD_RESPONSES = [
+      {
+        keywords: ["multiplier", "multipliers", "enterprise", "reservation"],
+        reply:
+          "Short version: multipliers tell us how one dollar ripples out. Tribal-specific multipliers ask, “How does a dollar move *through a sovereign Nation*, not just a county?” That’s why TEIM treats tribal government, enterprises, and households as part of one connected system."
+      },
+      {
+        keywords: ["federal", "indian law", "jurisdiction", "sovereign", "sovereignty"],
+        reply:
+          "Federal Indian law shapes who has power over land, taxation, and services. TEIM doesn’t ignore that — it uses sovereignty and jurisdiction as part of the logic for where impact shows up and which government structures it flows through."
+      },
+      {
+        keywords: ["council", "elders", "brief", "explain"],
+        reply:
+          "With council and elders, keep it concrete: what decision does this help with, what changes in people’s lives, and how this model centers the Nation’s own data and authority instead of only state or county numbers."
+      },
+      {
+        keywords: ["data", "sources", "confidential", "privacy"],
+        reply:
+          "Most of the sensitive data comes from the Tribe and stays under tribal control. Public data is layered on top, not used as a replacement. The idea is: sovereignty over data first, then modeling."
+      }
+    ];
+
+    const DEFAULT_FALLBACK =
+      "I’ll treat this as a design prompt: in the real version, this question would be routed to a TEIM- and tribal-law-aware answer bank. For now, try clicking a topic on the left or ask about multipliers, sovereignty, or data sources.";
+
+    const chatBody = document.getElementById("chatBody");
+    const chatInput = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+
+    function appendMessage(sender, text) {
+      const row = document.createElement("div");
+      row.classList.add("message-row", sender === "user" ? "user" : "bot");
+
+      const bubble = document.createElement("div");
+      bubble.classList.add("message-bubble", sender === "user" ? "user" : "bot");
+      bubble.textContent = text;
+
+      row.appendChild(bubble);
+      chatBody.appendChild(row);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function appendBotParagraphs(paragraphs) {
+      paragraphs.forEach((p) => appendMessage("bot", p));
+    }
+
+    function handleTopicClick(topicKey) {
+      const topic = TOPIC_RESPONSES[topicKey];
+      if (!topic) return;
+      appendMessage("user", topic.user);
+      setTimeout(() => {
+        appendBotParagraphs(topic.bot);
+      }, 300);
+    }
+
+    function getKeywordReply(text) {
+      const lower = text.toLowerCase();
+      for (const block of KEYWORD_RESPONSES) {
+        if (block.keywords.some((k) => lower.includes(k))) {
+          return block.reply;
+        }
+      }
+      return DEFAULT_FALLBACK;
+    }
+
+    function handleSend() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      appendMessage("user", text);
+      chatInput.value = "";
+
+      setTimeout(() => {
+        const reply = getKeywordReply(text);
+        appendMessage("bot", reply);
+      }, 300);
+    }
+
+    // ===== EVENT LISTENERS =====
+    sendBtn.addEventListener("click", handleSend);
+    chatInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleSend();
+      }
+    });
+
+    document.querySelectorAll(".topic-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const topicKey = btn.getAttribute("data-topic");
+        handleTopicClick(topicKey);
+      });
+    });
+
+    document.querySelectorAll(".quick-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const text = btn.getAttribute("data-quick");
+        if (text) {
+          chatInput.value = text;
+          chatInput.focus();
+        }
+      });
+    });
+
+    // Initial bot greeting
+    appendMessage(
+      "bot",
+      "Hi, I’m Cedar. I’m here to help translate TEIM, tribal economic impact, and federal Indian law into language that works for your Nation’s decision-makers."
+    );
+  </script>
+</body>
+</html>
