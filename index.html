@@ -39,9 +39,7 @@ body {
   min-height: 100vh;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   NAV — matches main TEIM site
-   ══════════════════════════════════════════════════════════════ */
+/* NAV */
 nav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(253, 250, 245, 0.97);
@@ -75,9 +73,7 @@ nav {
   box-shadow: inset 0 0 0 1px rgba(5, 150, 105, 0.2);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE LAYOUT
-   ══════════════════════════════════════════════════════════════ */
+/* PAGE LAYOUT */
 .page-wrap {
   max-width: 1400px;
   margin: 0 auto;
@@ -114,9 +110,7 @@ nav {
   box-shadow: 0 0 0 2px rgba(167, 243, 208, 0.3);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   CHAT CONTAINER
-   ══════════════════════════════════════════════════════════════ */
+/* CHAT CONTAINER */
 .chat-container {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -130,9 +124,7 @@ nav {
   }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   SIDEBAR — TOPICS & CEDAR PROFILE
-   ══════════════════════════════════════════════════════════════ */
+/* SIDEBAR */
 .sidebar {
   display: flex; flex-direction: column; gap: 1rem;
 }
@@ -246,9 +238,7 @@ nav {
   font-size: 0.7rem; color: var(--stone);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   MAIN CHAT PANEL
-   ══════════════════════════════════════════════════════════════ */
+/* MAIN CHAT PANEL */
 .chat-main {
   background: var(--white);
   border: 1px solid rgba(229, 221, 207, 0.8);
@@ -456,9 +446,7 @@ nav {
   font-size: 0.72rem; color: var(--stone); font-style: italic;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   CHAT INPUT
-   ══════════════════════════════════════════════════════════════ */
+/* CHAT INPUT */
 .chat-input-area {
   padding: 0.75rem 1rem;
   border-top: 1px solid rgba(229, 221, 207, 0.6);
@@ -536,9 +524,7 @@ nav {
   width: 16px; height: 16px;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   DESIGN NOTES PANEL (for Francesca)
-   ══════════════════════════════════════════════════════════════ */
+/* DESIGN NOTES PANEL */
 .design-notes {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -601,9 +587,7 @@ nav {
   font-size: 0.82rem;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════════════════ */
+/* FOOTER */
 footer {
   background: var(--earth);
   color: #fdfaf5;
@@ -619,7 +603,6 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
 
 <body>
 
-<!-- NAV — same as main site -->
 <nav>
   <a href="#" class="brand">
     Tribal Economic Impact Platform
@@ -636,24 +619,21 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
 
 <div class="page-wrap">
   
-  <!-- Page Header -->
   <header class="page-header">
     <div class="page-title-block">
       <h1>Ask Cedar</h1>
       <p class="page-subtitle">
-        Your guide to TEIM, tribal economic impact, and translating complex analysis for decision-makers.
+        Prototype of Francesca’s chatbot deliverable — a TEIM-aware assistant for tribal decision-makers.
       </p>
     </div>
     <div class="prototype-badge">Prototype Preview</div>
   </header>
 
-  <!-- Main Chat Interface -->
   <div class="chat-container">
     
     <!-- Sidebar -->
     <aside class="sidebar">
       
-      <!-- Cedar Profile Card -->
       <div class="cedar-profile">
         <div class="cedar-avatar-row">
           <div class="cedar-avatar">CE</div>
@@ -671,7 +651,6 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
         </div>
       </div>
 
-      <!-- Topic Cards -->
       <div class="topics-section">
         <p class="topics-label">Start with a topic</p>
         <div class="topic-cards">
@@ -702,22 +681,18 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
     <!-- Chat Main Panel -->
     <main class="chat-main">
       
-      <!-- Chat Header -->
       <div class="chat-header">
         <div class="chat-header-left">
           <div class="chat-mode-indicator">Tribal Economic Impact</div>
-          <span class="chat-session-label">Mockup Session</span>
+          <span class="chat-session-label">Mockup Session · Front-end only</span>
         </div>
         <div class="chat-actions">
-          <button class="chat-action-btn">Export</button>
-          <button class="chat-action-btn">Clear</button>
+          <button class="chat-action-btn" id="exportBtn">Export</button>
+          <button class="chat-action-btn" id="clearBtn">Clear</button>
         </div>
       </div>
 
-      <!-- Chat Body -->
       <div class="chat-body" id="chatBody">
-        
-        <!-- Intro State -->
         <div class="chat-intro" id="chatIntro">
           <div class="chat-intro-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -729,10 +704,8 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
             Click a topic on the left, use a quick prompt below, or type your own question about TEIM, tribal economic impact, or how to communicate results.
           </p>
         </div>
-
       </div>
 
-      <!-- Input Area -->
       <div class="chat-input-area">
         <div class="quick-prompts">
           <button class="quick-prompt" data-prompt="Explain TEIM like I'm new to economic impact.">
@@ -750,7 +723,7 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
             type="text" 
             class="chat-input" 
             id="chatInput"
-            placeholder="Ask about TEIM, multipliers, federal Indian law…"
+            placeholder="Ask about TEIM, multipliers, federal Indian law… (Enter to send)"
           >
           <button class="send-btn" id="sendBtn">
             Send
@@ -763,57 +736,45 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
     </main>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════════
-       DESIGN NOTES FOR FRANCESCA
-       ══════════════════════════════════════════════════════════════ -->
   <section class="design-notes">
-    <h2>Design Notes for Francesca</h2>
+    <h2>Cedar Prototype — Francesca’s Chatbot Deliverable</h2>
     
     <div class="callout">
-      <strong>This is a front-end mockup only.</strong> The scripted responses show how conversations could flow. Your Python backend will replace the JavaScript logic below.
+      <strong>This is a front-end mockup only.</strong> The scripted responses show how conversations could flow. Your Python chatbot will eventually replace the JavaScript that generates answers.
     </div>
 
-    <h3>Integration Architecture</h3>
+    <h3>How This Maps to Your Deliverable</h3>
     <ul>
-      <li><strong>New nav tab:</strong> "Cedar" sits alongside Home, Model, Demo, Contact — treated as a first-class feature, not a sidebar widget</li>
-      <li><strong>Visual consistency:</strong> Uses the same <code>Crimson Text</code> + <code>DM Sans</code> typography, ochre/sage/territory colors, and card patterns as the main TEIM site</li>
-      <li><strong>Backend swap:</strong> The <code>handleSend()</code> function and topic responses can be replaced with API calls to your Python service without changing any CSS or HTML structure</li>
+      <li>Topic-based responses (left sidebar) → matches your “organized by topic” requirement</li>
+      <li>Quick prompts → examples of reusable, canned question templates</li>
+      <li>Typing indicator + timestamps → basic UX polish for a real policy tool</li>
+      <li>Export/Clear → placeholders for saving a briefing and resetting a session</li>
     </ul>
 
     <h3>Quality-of-Life Features Shown</h3>
     <ul>
-      <li><strong>Topic cards with hover states:</strong> The left-side accent bar appears on hover — small touch that makes it feel polished</li>
-      <li><strong>Typing indicator:</strong> Shows "Cedar is thinking…" with animated dots (see <code>.typing-indicator</code> CSS)</li>
-      <li><strong>Message animations:</strong> Messages fade and slide in (<code>fadeSlideIn</code> keyframes)</li>
-      <li><strong>Quick prompts:</strong> Dashed-border buttons that fill in common questions — users can click instead of typing</li>
-      <li><strong>Export/Clear buttons:</strong> Placeholder for future functionality (save conversation as PDF, clear session)</li>
-      <li><strong>Session indicator:</strong> Shows the current mode/context at top of chat</li>
-    </ul>
-
-    <h3>Future Features to Consider</h3>
-    <ul>
-      <li><strong>Collapsible sections:</strong> For long explanations, add expand/collapse so council briefing prep doesn't overwhelm</li>
-      <li><strong>Citation cards:</strong> When Cedar references TEIM methodology or federal law, show a small expandable source card</li>
-      <li><strong>Conversation history:</strong> "Previous sessions" sidebar that persists across visits (would need backend storage)</li>
-      <li><strong>Feedback thumbs:</strong> Quick 👍/👎 on each response to flag what's working</li>
-      <li><strong>Language toggle:</strong> Some tribes may want responses adapted for different audiences (technical vs. community)</li>
+      <li><strong>Topic cards with hover states:</strong> subtle left accent bar and shadow on hover</li>
+      <li><strong>Typing indicator:</strong> “Cedar is thinking…” with animated dots</li>
+      <li><strong>Message animations:</strong> fade + slide in for each new message</li>
+      <li><strong>Quick prompts:</strong> click once to send a pre-filled question instantly</li>
+      <li><strong>Session indicator:</strong> clearly labeled as a mockup session at the top</li>
+      <li><strong>Export (print-to-PDF) button:</strong> lets you save a conversation mock as a PDF</li>
     </ul>
 
     <h3>Technical Notes</h3>
     <ul>
-      <li>The <code>TOPIC_RESPONSES</code> and <code>KEYWORD_RESPONSES</code> objects in the script mirror what you'd structure in JSON/YAML for your Python backend</li>
-      <li>All styling uses CSS custom properties (<code>:root</code> variables) so color/theme changes propagate everywhere</li>
-      <li>The chat body uses <code>flex-direction: column</code> so new messages naturally stack — just append to the container</li>
-      <li>Mobile responsive: stacks to single column below 900px</li>
+      <li>The <code>TOPIC_RESPONSES</code> and <code>KEYWORD_RESPONSES</code> objects below mirror the JSON/YAML bank you’ll use in Python.</li>
+      <li>All styling uses CSS variables, so you can update colors globally from <code>:root</code>.</li>
+      <li>When you switch to a Python backend, you only need to replace <code>getKeywordReply()</code> and the topic response logic with API calls.</li>
     </ul>
 
     <h3>Your Chatbot Deliverable Checklist</h3>
     <ul>
-      <li>☐ Topic-based response organization (this mockup shows the structure)</li>
-      <li>☐ Follow-up awareness (responses can suggest next questions)</li>
-      <li>☐ Tone calibration for tribal audiences (not generic chatbot voice)</li>
-      <li>☐ Documentation for adding new topics/responses</li>
-      <li>☐ Simple deployment (Flask/FastAPI endpoint or local CLI)</li>
+      <li>☐ Topic-based response organization (TEIM, multipliers, law, data)</li>
+      <li>☐ Follow-up awareness and suggestive next questions</li>
+      <li>☐ Tone calibrated for tribal policy and leadership audiences</li>
+      <li>☐ Clear internal documentation for adding/editing content</li>
+      <li>☐ Simple local run or lightweight web deployment</li>
     </ul>
   </section>
 
@@ -825,44 +786,42 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
 </footer>
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-// SCRIPTED RESPONSES (same content as original, cleaner structure)
-// ═══════════════════════════════════════════════════════════════
+// SCRIPTED RESPONSES
 const TOPIC_RESPONSES = {
   teim_intro: {
     user: "What is TEIM actually doing for our Nation?",
     bot: [
-      "TEIM is a tribal-first economic impact system. Instead of copying state or county models, it builds around how your Nation actually governs, spends, and circulates money.",
-      "When a councilmember asks "What does this number mean?" — TEIM answers:\n\n• How dollars move through tribal government, enterprises, and the community\n• What jobs, wages, and business activity those dollars support\n• How impact differs on tribal land versus surrounding areas\n\nIt's less about generic multipliers and more about telling a sovereignty-aware story of your economic footprint."
+      `TEIM is a tribal-first economic impact system. Instead of copying state or county models, it builds around how your Nation actually governs, spends, and circulates money.`,
+      `When a councilmember asks "What does this number mean?" — TEIM answers:\n\n• How dollars move through tribal government, enterprises, and the community\n• What jobs, wages, and business activity those dollars support\n• How impact differs on tribal land versus surrounding areas\n\nIt's less about generic multipliers and more about telling a sovereignty-aware story of your economic footprint.`
     ]
   },
   multipliers: {
     user: "Why do we need tribal-specific multipliers instead of IMPLAN?",
     bot: [
-      "Most off-the-shelf models assume state and county boundaries, not tribal jurisdiction. That means they often understate tribal enterprise impact, mis-assign jobs to counties instead of tribal land, and miss flows between tribal government and households.",
-      "Tribal-specific multipliers do three things differently:\n\n1. Treat the Tribe as a government with its own fiscal powers\n2. Use tribal data and economic zones instead of only county data\n3. Respect tribal boundaries when tracking where impact lands",
-      "For your finance officer: "IMPLAN is fine for state budgeting, but it wasn't built for sovereignty. TEIM is.""
+      `Most off-the-shelf models assume state and county boundaries, not tribal jurisdiction. That means they often understate tribal enterprise impact, mis-assign jobs to counties instead of tribal land, and miss flows between tribal government and households.`,
+      `Tribal-specific multipliers do three things differently:\n\n1. Treat the Tribe as a government with its own fiscal powers\n2. Use tribal data and economic zones instead of only county data\n3. Respect tribal boundaries when tracking where impact lands`,
+      `For your finance officer: "IMPLAN is fine for state budgeting, but it wasn't built for sovereignty. TEIM is."`
     ]
   },
   council_briefing: {
     user: "How do I explain TEIM to Tribal Council in 10 minutes?",
     bot: [
-      "One structure that works:\n\n1. Purpose: "This tool shows our economic footprint as a sovereign Nation, not just a business."\n2. Tie to decisions: "It helps us compare scenarios — new projects, debt, federal funding — in our own terms."\n3. Concrete example: "If we invest $X in this program, TEIM estimates Y jobs and Z in income on tribal land."",
-      "Council doesn't need the formulas. They need:\n\n• What decision this helps with\n• Why tribal-specific modeling matters\n• What could change if we ignore our unique structure"
+      `One structure that works:\n\n1. Purpose: "This tool shows our economic footprint as a sovereign Nation, not just a business."\n2. Tie to decisions: "It helps us compare scenarios — new projects, debt, federal funding — in our own terms."\n3. Concrete example: "If we invest $X in this program, TEIM estimates Y jobs and Z in income on tribal land."`,
+      `Council doesn't need the formulas. They need:\n\n• What decision this helps with\n• Why tribal-specific modeling matters\n• What could change if we ignore our unique structure`
     ]
   },
   data_sources: {
     user: "What data goes into TEIM, and what stays sovereign?",
     bot: [
-      "Inputs typically include tribal financial and enterprise data (under data-sharing agreements), public sources like Tribal Economic Zones, and carefully chosen external benchmarks for comparison.",
-      "The core principle is sovereignty over data:\n\n• The Tribe decides what can be shared externally\n• Internal datasets stay under tribal control\n• Public-facing results protect sensitive details while still telling a powerful story"
+      `Inputs typically include tribal financial and enterprise data (under data-sharing agreements), public sources like Tribal Economic Zones, and carefully chosen external benchmarks for comparison.`,
+      `The core principle is sovereignty over data:\n\n• The Tribe decides what can be shared externally\n• Internal datasets stay under tribal control\n• Public-facing results protect sensitive details while still telling a powerful story`
     ]
   },
   law_context: {
     user: "How does federal Indian law show up in this model?",
     bot: [
-      "Federal Indian law shapes where the economy 'counts.' Jurisdiction affects which government can tax or regulate activity, how trust land is treated, and how federal funding rules apply.",
-      "TEIM bakes in:\n\n• Tribal vs. state vs. federal roles\n• Trust vs. fee status\n• The way sovereignty redirects economic flows\n\nThe legal context matters because it changes the story the numbers are telling."
+      `Federal Indian law shapes where the economy “counts.” Jurisdiction affects which government can tax or regulate activity, how trust land is treated, and how federal funding rules apply.`,
+      `TEIM bakes in:\n\n• Tribal vs. state vs. federal roles\n• Trust vs. fee status\n• The way sovereignty redirects economic flows\n\nThe legal context matters because it changes the story the numbers are telling.`
     ]
   }
 };
@@ -870,35 +829,43 @@ const TOPIC_RESPONSES = {
 const KEYWORD_RESPONSES = [
   {
     keywords: ["multiplier", "multipliers", "enterprise", "reservation"],
-    reply: "Multipliers tell us how one dollar ripples out. Tribal-specific multipliers ask, "How does a dollar move through a sovereign Nation, not just a county?" That's why TEIM treats tribal government, enterprises, and households as one connected system."
+    reply: `Multipliers tell us how one dollar ripples out. Tribal-specific multipliers ask, "How does a dollar move through a sovereign Nation, not just a county?" That's why TEIM treats tribal government, enterprises, and households as one connected system.`
   },
   {
     keywords: ["federal", "indian law", "jurisdiction", "sovereign", "sovereignty"],
-    reply: "Federal Indian law shapes who has power over land, taxation, and services. TEIM uses sovereignty and jurisdiction as part of the logic for where impact shows up and which government structures it flows through."
+    reply: `Federal Indian law shapes who has power over land, taxation, and services. TEIM uses sovereignty and jurisdiction as part of the logic for where impact shows up and which government structures it flows through.`
   },
   {
     keywords: ["council", "elders", "brief", "explain"],
-    reply: "With council and elders, keep it concrete: what decision does this help with, what changes in people's lives, and how this model centers the Nation's own data instead of only state or county numbers."
+    reply: `With council and elders, keep it concrete: what decision this helps with, what changes in people's lives, and how this model centers the Nation's own data instead of only state or county numbers.`
   },
   {
     keywords: ["data", "sources", "confidential", "privacy"],
-    reply: "Most sensitive data comes from the Tribe and stays under tribal control. Public data is layered on top, not used as a replacement. The principle: sovereignty over data first, then modeling."
+    reply: `Most sensitive data comes from the Tribe and stays under tribal control. Public data is layered on top, not used as a replacement. The principle: sovereignty over data first, then modeling.`
   }
 ];
 
-const DEFAULT_FALLBACK = "I'll treat this as a design prompt: in the real version, this would route to a TEIM-aware answer bank. Try clicking a topic on the left or ask about multipliers, sovereignty, or data sources.";
+const DEFAULT_FALLBACK = `I'll treat this as a design prompt: in the real version, this would route to a TEIM-aware answer bank. Try clicking a topic on the left or ask about multipliers, sovereignty, or data sources.`;
 
-// ═══════════════════════════════════════════════════════════════
 // DOM ELEMENTS
-// ═══════════════════════════════════════════════════════════════
 const chatBody = document.getElementById('chatBody');
 const chatInput = document.getElementById('chatInput');
 const sendBtn = document.getElementById('sendBtn');
 const chatIntro = document.getElementById('chatIntro');
+const clearBtn = document.getElementById('clearBtn');
+const exportBtn = document.getElementById('exportBtn');
 
-// ═══════════════════════════════════════════════════════════════
 // HELPERS
-// ═══════════════════════════════════════════════════════════════
+function showIntro() {
+  if (chatIntro && !chatBody.contains(chatIntro)) {
+    chatBody.innerHTML = '';
+    chatIntro.style.display = 'block';
+    chatBody.appendChild(chatIntro);
+  } else if (chatIntro) {
+    chatIntro.style.display = 'block';
+  }
+}
+
 function hideIntro() {
   if (chatIntro) chatIntro.style.display = 'none';
 }
@@ -984,9 +951,7 @@ function getKeywordReply(text) {
   return DEFAULT_FALLBACK;
 }
 
-// ═══════════════════════════════════════════════════════════════
 // HANDLERS
-// ═══════════════════════════════════════════════════════════════
 function handleTopicClick(topicKey) {
   const topic = TOPIC_RESPONSES[topicKey];
   if (!topic) return;
@@ -1010,10 +975,19 @@ function handleSend() {
   }, 1000);
 }
 
-// ═══════════════════════════════════════════════════════════════
+function handleClear() {
+  chatBody.innerHTML = '';
+  showIntro();
+}
+
+function handleExport() {
+  // Simple print-to-PDF as a placeholder for real export
+  window.print();
+}
+
 // EVENT LISTENERS
-// ═══════════════════════════════════════════════════════════════
 sendBtn.addEventListener('click', handleSend);
+
 chatInput.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
@@ -1033,10 +1007,13 @@ document.querySelectorAll('.quick-prompt').forEach(btn => {
     const prompt = btn.getAttribute('data-prompt');
     if (prompt) {
       chatInput.value = prompt;
-      chatInput.focus();
+      handleSend();
     }
   });
 });
+
+if (clearBtn) clearBtn.addEventListener('click', handleClear);
+if (exportBtn) exportBtn.addEventListener('click', handleExport);
 </script>
 
 </body>
