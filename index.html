@@ -92,7 +92,7 @@ nav {
 }
 
 .page-subtitle {
-  font-size: 0.88rem; color: var(--stone); max-width: 480px;
+  font-size: 0.88rem; color: var(--stone); max-width: 520px;
 }
 
 .prototype-badge {
@@ -623,7 +623,7 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
     <div class="page-title-block">
       <h1>Ask Cedar</h1>
       <p class="page-subtitle">
-        Prototype of Francesca’s chatbot deliverable — a TEIM-aware assistant for tribal decision-makers.
+        Prototype of Francesca’s chatbot deliverable — a TEIM-aware assistant that helps turn technical results into decisions, stories, and policy language.
       </p>
     </div>
     <div class="prototype-badge">Prototype Preview</div>
@@ -643,17 +643,21 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
           </div>
         </div>
         <p class="cedar-desc">
-          I help translate TEIM outputs, multipliers, and federal Indian law into language that works for council members, finance teams, and enterprise leadership.
+          I’m a practice tool, not a crystal ball. Ask me to unpack TEIM numbers, translate impact for council and community, or sketch the spine of a briefing or impact story.
         </p>
         <div class="cedar-badges">
           <span class="cedar-badge">TEIM-Powered</span>
-          <span class="cedar-badge">Tribal Law</span>
+          <span class="cedar-badge">Policy-Aware</span>
         </div>
       </div>
 
       <div class="topics-section">
         <p class="topics-label">Start with a topic</p>
         <div class="topic-cards">
+          <div class="topic-card" data-topic="cedar_intro">
+            <div class="topic-card-title">What is Cedar?</div>
+            <div class="topic-card-sub">How to use this assistant in practice</div>
+          </div>
           <div class="topic-card" data-topic="teim_intro">
             <div class="topic-card-title">What is TEIM?</div>
             <div class="topic-card-sub">Plain-language overview for tribal audiences</div>
@@ -664,7 +668,11 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
           </div>
           <div class="topic-card" data-topic="council_briefing">
             <div class="topic-card-title">Briefing Tribal Council</div>
-            <div class="topic-card-sub">How to explain results in 10 minutes</div>
+            <div class="topic-card-sub">Explain results in 10 minutes</div>
+          </div>
+          <div class="topic-card" data-topic="impact_story">
+            <div class="topic-card-title">Impact story & report</div>
+            <div class="topic-card-sub">Turn tables into a compelling narrative</div>
           </div>
           <div class="topic-card" data-topic="data_sources">
             <div class="topic-card-title">Data sovereignty</div>
@@ -701,21 +709,24 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
           </div>
           <h3>Welcome to Cedar</h3>
           <p>
-            Click a topic on the left, use a quick prompt below, or type your own question about TEIM, tribal economic impact, or how to communicate results.
+            Click a topic on the left, use a quick prompt below, or type your own question about TEIM, multipliers, report writing, or how to brief decision-makers.
           </p>
         </div>
       </div>
 
       <div class="chat-input-area">
         <div class="quick-prompts">
+          <button class="quick-prompt" data-prompt="What is Cedar and how should I use this tool?">
+            "What is Cedar?"
+          </button>
           <button class="quick-prompt" data-prompt="Explain TEIM like I'm new to economic impact.">
             "Explain TEIM simply"
           </button>
-          <button class="quick-prompt" data-prompt="How do I explain this chart to elders?">
-            "How do I brief elders?"
+          <button class="quick-prompt" data-prompt="How do I turn these TEIM results into a short impact story for council?">
+            "Impact story from results"
           </button>
-          <button class="quick-prompt" data-prompt="What's a reservation multiplier?">
-            "What's a multiplier?"
+          <button class="quick-prompt" data-prompt="How do I explain this chart to elders and community, not just economists?">
+            "How do I brief elders?"
           </button>
         </div>
         <div class="input-row">
@@ -723,7 +734,7 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
             type="text" 
             class="chat-input" 
             id="chatInput"
-            placeholder="Ask about TEIM, multipliers, federal Indian law… (Enter to send)"
+            placeholder="Ask about TEIM, multipliers, charts, impact stories, or how to talk to council… (Enter to send)"
           >
           <button class="send-btn" id="sendBtn">
             Send
@@ -740,41 +751,40 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
     <h2>Cedar Prototype — Francesca’s Chatbot Deliverable</h2>
     
     <div class="callout">
-      <strong>This is a front-end mockup only.</strong> The scripted responses show how conversations could flow. Your Python chatbot will eventually replace the JavaScript that generates answers.
+      <strong>This is a front-end mockup only.</strong> The scripted responses show how conversations could flow. The real Python chatbot will eventually plug in where the JavaScript “answer bank” lives.
     </div>
 
     <h3>How This Maps to Your Deliverable</h3>
     <ul>
-      <li>Topic-based responses (left sidebar) → matches your “organized by topic” requirement</li>
-      <li>Quick prompts → examples of reusable, canned question templates</li>
-      <li>Typing indicator + timestamps → basic UX polish for a real policy tool</li>
-      <li>Export/Clear → placeholders for saving a briefing and resetting a session</li>
+      <li>Topic-based organization (TEIM, Cedar, multipliers, impact story, data, law) mirrors how your back-end answer bank can be grouped.</li>
+      <li>Keyword-based replies show how free-typed questions (e.g., “this chart,” “impact study”) can still land in the right bucket.</li>
+      <li>Cedar has a distinct voice: practical, policy-aware, and tuned for tribal leadership audiences.</li>
+      <li>Export / Clear are UX anchors for “save briefing” and “reset” behavior you can add later.</li>
     </ul>
 
     <h3>Quality-of-Life Features Shown</h3>
     <ul>
-      <li><strong>Topic cards with hover states:</strong> subtle left accent bar and shadow on hover</li>
-      <li><strong>Typing indicator:</strong> “Cedar is thinking…” with animated dots</li>
-      <li><strong>Message animations:</strong> fade + slide in for each new message</li>
-      <li><strong>Quick prompts:</strong> click once to send a pre-filled question instantly</li>
-      <li><strong>Session indicator:</strong> clearly labeled as a mockup session at the top</li>
-      <li><strong>Export (print-to-PDF) button:</strong> lets you save a conversation mock as a PDF</li>
+      <li><strong>Topic cards with hover states:</strong> small accent bar + motion so it feels like a real feature, not a mock.</li>
+      <li><strong>Typing indicator:</strong> “Cedar is thinking…” makes the tool feel alive and gives space for back-end latency.</li>
+      <li><strong>Message animations:</strong> subtle slide/fade so dense explanations don’t feel like a wall of text.</li>
+      <li><strong>Quick prompts:</strong> pre-written questions that model “good asks” for tribal policy work.</li>
+      <li><strong>Print-based export:</strong> basic but real — a council staffer could literally print/save a draft briefing from this mockup.</li>
     </ul>
 
     <h3>Technical Notes</h3>
     <ul>
-      <li>The <code>TOPIC_RESPONSES</code> and <code>KEYWORD_RESPONSES</code> objects below mirror the JSON/YAML bank you’ll use in Python.</li>
-      <li>All styling uses CSS variables, so you can update colors globally from <code>:root</code>.</li>
-      <li>When you switch to a Python backend, you only need to replace <code>getKeywordReply()</code> and the topic response logic with API calls.</li>
+      <li><code>TOPIC_RESPONSES</code> = opinionated scripts for “canonical” questions (cards, quick prompts).</li>
+      <li><code>KEYWORD_RESPONSES</code> = shorter, more flexible replies that fire on free-typed text.</li>
+      <li>When you build the Python version, these two layers can become JSON/YAML answer files + a small router.</li>
+      <li>The UI doesn’t care where responses come from — you’ll just swap <code>getKeywordReply()</code> and topic handlers for API calls.</li>
     </ul>
 
     <h3>Your Chatbot Deliverable Checklist</h3>
     <ul>
-      <li>☐ Topic-based response organization (TEIM, multipliers, law, data)</li>
-      <li>☐ Follow-up awareness and suggestive next questions</li>
-      <li>☐ Tone calibrated for tribal policy and leadership audiences</li>
-      <li>☐ Clear internal documentation for adding/editing content</li>
-      <li>☐ Simple local run or lightweight web deployment</li>
+      <li>☐ Topic + keyword answer bank (TEIM, multipliers, law, data, impact stories, Cedar usage)</li>
+      <li>☐ Clear “voice” for tribal leadership and policy audiences</li>
+      <li>☐ Lightweight run path (local Python, simple web backend, or both)</li>
+      <li>☐ Documentation so future staff can add new topics without touching Python logic</li>
     </ul>
   </section>
 
@@ -786,68 +796,113 @@ footer .tagline { opacity: 0.8; font-size: 0.75rem; }
 </footer>
 
 <script>
+// ──────────────────────────────────────────────────────────────
 // SCRIPTED RESPONSES
+// ──────────────────────────────────────────────────────────────
 const TOPIC_RESPONSES = {
+  cedar_intro: {
+    user: "What is Cedar and how should I use this tool?",
+    bot: [
+      `I’m Cedar — a TEIM-aware practice assistant. I don’t replace your economists or legal counsel. I sit in the middle space: helping you turn technical work into language for council, community, and external partners.`,
+      `You can use me to:\n\n• Draft talking points for council or board briefings\n• Translate a dense table into a short “so what?” paragraph\n• Outline an economic impact memo or one-pager\n• Sense-check whether you’re explaining sovereignty and jurisdiction clearly without giving away sensitive internal data`,
+      `The best way to use me is iterative: ask a question, skim what I give you, tweak it in your own voice, and then ask follow-up questions like “shorter,” “more community-facing,” or “more technical for finance.”`
+    ]
+  },
   teim_intro: {
     user: "What is TEIM actually doing for our Nation?",
     bot: [
-      `TEIM is a tribal-first economic impact system. Instead of copying state or county models, it builds around how your Nation actually governs, spends, and circulates money.`,
-      `When a councilmember asks "What does this number mean?" — TEIM answers:\n\n• How dollars move through tribal government, enterprises, and the community\n• What jobs, wages, and business activity those dollars support\n• How impact differs on tribal land versus surrounding areas\n\nIt's less about generic multipliers and more about telling a sovereignty-aware story of your economic footprint.`
+      `TEIM is a tribal-first economic impact system. Instead of forcing your Nation to fit state or county models, it builds around how you actually govern, spend, and circulate money.`,
+      `When a councilmember asks “What does this number mean?” TEIM is meant to answer:\n\n• How dollars move through tribal government, enterprises, and the community\n• What jobs, wages, and business activity those dollars support\n• How impact differs on tribal land versus surrounding areas`,
+      `Think of it less as “multipliers in a black box” and more as a structured way to tell a sovereignty-aware story of your economic footprint — one that respects jurisdiction, tribal programs, and community outcomes.`
     ]
   },
   multipliers: {
     user: "Why do we need tribal-specific multipliers instead of IMPLAN?",
     bot: [
-      `Most off-the-shelf models assume state and county boundaries, not tribal jurisdiction. That means they often understate tribal enterprise impact, mis-assign jobs to counties instead of tribal land, and miss flows between tribal government and households.`,
-      `Tribal-specific multipliers do three things differently:\n\n1. Treat the Tribe as a government with its own fiscal powers\n2. Use tribal data and economic zones instead of only county data\n3. Respect tribal boundaries when tracking where impact lands`,
-      `For your finance officer: "IMPLAN is fine for state budgeting, but it wasn't built for sovereignty. TEIM is."`
+      `Most off-the-shelf models assume state and county boundaries, not tribal jurisdiction. That means they often:\n\n• Understate tribal enterprise impact\n• Mis-assign jobs and income to counties instead of tribal land\n• Miss flows between tribal government, enterprises, and households`,
+      `Tribal-specific multipliers do three things differently:\n\n1. Treat the Tribe as a government with its own fiscal powers\n2. Use tribal data and economic zones instead of only county data\n3. Respect tribal boundaries and jurisdiction when tracking where impact lands`,
+      `For a finance or policy audience, you can say: “IMPLAN is fine for state budgeting, but it wasn’t built for sovereignty. TEIM is.”`
     ]
   },
   council_briefing: {
     user: "How do I explain TEIM to Tribal Council in 10 minutes?",
     bot: [
-      `One structure that works:\n\n1. Purpose: "This tool shows our economic footprint as a sovereign Nation, not just a business."\n2. Tie to decisions: "It helps us compare scenarios — new projects, debt, federal funding — in our own terms."\n3. Concrete example: "If we invest $X in this program, TEIM estimates Y jobs and Z in income on tribal land."`,
-      `Council doesn't need the formulas. They need:\n\n• What decision this helps with\n• Why tribal-specific modeling matters\n• What could change if we ignore our unique structure`
+      `You don’t need to walk through the math. You need a frame that honors sovereignty and points to decisions. One simple structure:\n\n1. Purpose – “This tool shows our economic footprint as a sovereign Nation, not just a business.”\n2. Use – “It helps us test scenarios: new projects, grants, debt, or policy changes.”\n3. Example – “If we invest $X in this program, TEIM estimates Y jobs and Z in income on tribal land.”`,
+      `You can close with a simple contrast:\n\n• Without TEIM: we rely on generic state/county models that misplace our impact.\n• With TEIM: we use numbers that treat the Nation as the main unit of analysis.`,
+      `If elders or community members are present, stay close to lived experience: “When we spend here, these are the jobs that show up in our community, these are the small businesses that feel it, and this is how it supports future generations.”`
+    ]
+  },
+  impact_story: {
+    user: "How do I turn these TEIM results into a compelling economic impact story?",
+    bot: [
+      `A good impact story reads like a policy brief, not an accounting ledger. One template you can reuse:\n\n1. Headline – One sentence about what changed (“Tribal investment in X is supporting Y jobs and Z in income on tribal land.”)\n2. Core numbers – 3–5 numbers that matter (jobs, income, total output, share on tribal land, key sectors).\n3. Who feels it – Elders, youth, workers, entrepreneurs, cultural programs.\n4. Sovereignty lens – How this impact is different because the Nation governs these dollars.\n5. Call to action – What decision or policy this analysis informs.`,
+      `Example opening paragraph you can adapt:\n\n“Our Nation’s investment in health, education, and enterprise is doing more than balancing a budget line. According to TEIM, these investments support around 240 jobs, $11.2 million in labor income, and a broader ripple of business activity that stays anchored on tribal land. This story is about where those dollars go, who they reach, and what it means for our sovereignty.”`,
+      `From there, you can create two versions:\n\n• A technical appendix for finance and policy staff.\n• A plain-language one-pager or slide for council, elders, and partners.\n\nCedar’s role is to help you move between those two levels without losing the core narrative.`
     ]
   },
   data_sources: {
     user: "What data goes into TEIM, and what stays sovereign?",
     bot: [
-      `Inputs typically include tribal financial and enterprise data (under data-sharing agreements), public sources like Tribal Economic Zones, and carefully chosen external benchmarks for comparison.`,
-      `The core principle is sovereignty over data:\n\n• The Tribe decides what can be shared externally\n• Internal datasets stay under tribal control\n• Public-facing results protect sensitive details while still telling a powerful story`
+      `Inputs usually include a mix of:\n\n• Tribal financial and enterprise data (under explicit data agreements)\n• Public sources (e.g., tribal economic zones, BLS, Census, other benchmarks)\n• Carefully selected external data for comparison, not replacement`,
+      `The core principle is sovereignty over data:\n\n• The Tribe decides what is shared outside the Nation\n• Internal datasets stay under tribal control\n• Public-facing results are designed to tell a strong story without exposing sensitive details`,
+      `When talking to outside partners, you can say: “We used our own tribal data to calibrate this model. External sources are there to support our story, not overwrite it.”`
     ]
   },
   law_context: {
     user: "How does federal Indian law show up in this model?",
     bot: [
-      `Federal Indian law shapes where the economy “counts.” Jurisdiction affects which government can tax or regulate activity, how trust land is treated, and how federal funding rules apply.`,
-      `TEIM bakes in:\n\n• Tribal vs. state vs. federal roles\n• Trust vs. fee status\n• The way sovereignty redirects economic flows\n\nThe legal context matters because it changes the story the numbers are telling.`
+      `Federal Indian law and tribal law shape where the economy “counts.” Jurisdiction affects:\n\n• Which government can tax or regulate activity\n• How trust land and fee land are treated\n• How federal funding and program rules apply on the ground`,
+      `TEIM doesn’t try to be a full legal treatise, but it bakes law into the structure:\n\n• Distinguishing tribal vs. state vs. federal roles\n• Respecting trust vs. fee status when mapping impact\n• Recognizing how sovereignty redirects economic flows and responsibilities`,
+      `When explaining this to a policy audience, you might say: “These numbers aren’t floating in a vacuum. They sit inside a legal landscape where jurisdiction, land status, and sovereignty change how dollars move and who actually benefits.”`
     ]
   }
 };
 
+// More flexible, personality-heavy keyword replies
 const KEYWORD_RESPONSES = [
   {
-    keywords: ["multiplier", "multipliers", "enterprise", "reservation"],
-    reply: `Multipliers tell us how one dollar ripples out. Tribal-specific multipliers ask, "How does a dollar move through a sovereign Nation, not just a county?" That's why TEIM treats tribal government, enterprises, and households as one connected system.`
+    // multipliers & IMPLAN
+    keywords: ["multiplier", "multipliers", "implan", "rims", "impact model"],
+    reply: `Short version: multipliers tell you how one dollar ripples out. Tribal-specific multipliers ask, “How does a dollar move through a sovereign Nation, not just a county?”\n\nSo instead of treating you as a small part of a state economy, TEIM treats tribal government, enterprises, and households as one connected system — and measures the ripple from there.`
   },
   {
-    keywords: ["federal", "indian law", "jurisdiction", "sovereign", "sovereignty"],
-    reply: `Federal Indian law shapes who has power over land, taxation, and services. TEIM uses sovereignty and jurisdiction as part of the logic for where impact shows up and which government structures it flows through.`
+    // federal indian law & sovereignty
+    keywords: ["federal", "indian law", "jurisdiction", "sovereign", "sovereignty", "pl 280", "treaty"],
+    reply: `You can think of federal Indian law as the background operating system for the economy. It shapes who has power over land, taxation, and services. TEIM uses that context when deciding where to count jobs and income — on tribal land, in nearby counties, or in broader regional spillovers.\n\nWhen you write or brief, it helps to name that explicitly: “These numbers are generated inside a legal landscape that recognizes our sovereignty and jurisdiction, not just our zip code.”`
   },
   {
-    keywords: ["council", "elders", "brief", "explain"],
-    reply: `With council and elders, keep it concrete: what decision this helps with, what changes in people's lives, and how this model centers the Nation's own data instead of only state or county numbers.`
+    // council, elders, briefings, charts
+    keywords: ["council", "elders", "brief", "presentation", "slide", "chart", "graph"],
+    reply: `With council and elders, you win by being concrete and respectful of time:\n\n• Start with one sentence: what decision this supports.\n• Show one chart or table, not ten.\n• Translate each number into people or programs (“This bar is payroll for our citizens, not just wages in the abstract.”).\n\nIf a chart feels too technical, turn it into three bullets: what increased, what stayed flat, and what it means for community.`
   },
   {
-    keywords: ["data", "sources", "confidential", "privacy"],
-    reply: `Most sensitive data comes from the Tribe and stays under tribal control. Public data is layered on top, not used as a replacement. The principle: sovereignty over data first, then modeling.`
+    // data, confidentiality, sovereignty
+    keywords: ["data", "sources", "confidential", "privacy", "sensitive", "sharing"],
+    reply: `Most of the heavy lifting comes from tribal data, and that stays under tribal control. Public data is used as a scaffold — it helps fill gaps and create comparisons, but it doesn’t replace what the Nation knows about itself.\n\nIn practice, that means two layers: an internal view with detail for staff, and a public-facing view that’s more aggregated and protective. TEIM is designed to support that split.`
+  },
+  {
+    // Cedar identity
+    keywords: ["cedar", "who are you", "what are you"],
+    reply: `I’m Cedar — imagine a policy-minded program officer sitting next to your economist, helping translate their work for council, funders, and partners.\n\nI’m not making up numbers; I’m helping you:\n• Frame questions\n• Draft impact language\n• Connect TEIM outputs to decisions and narrative.`
+  },
+  {
+    // TEIM & impact study / report writing
+    keywords: ["impact study", "impact report", "executive summary", "write", "writing", "story"],
+    reply: `A good impact study does three jobs at once:\n\n1. Gives decision-makers confidence in the numbers.\n2. Tells a clear story about jobs, income, and community outcomes.\n3. Honors sovereignty and data stewardship.\n\nStructure you can reuse:\n• 1–2 page executive summary (for council and partners)\n• Methods and data section (for staff and reviewers)\n• Results organized by theme (jobs, income, sector, geography)\n• Short conclusion: “What this suggests for our next decision.”`
+  },
+  {
+    // jobs, wages, sectors
+    keywords: ["jobs", "employment", "wages", "income", "sectors", "industries"],
+    reply: `When you talk about jobs and income, connect them back to role and place:\n\n• Where are these jobs (on tribal land, off-reservation, hybrid)?\n• Who holds them (citizens, non-citizens, partner organizations)?\n• What do these wages enable (housing stability, local spending, cultural work)?\n\nThat’s how a table turns into a policy-relevant story instead of just a list of numbers.`
   }
 ];
 
-const DEFAULT_FALLBACK = `I'll treat this as a design prompt: in the real version, this would route to a TEIM-aware answer bank. Try clicking a topic on the left or ask about multipliers, sovereignty, or data sources.`;
+const DEFAULT_FALLBACK =
+  `I’ll treat this as a design prompt: in the real version, this would route to a TEIM-aware answer bank or a more specific topic. Try asking about TEIM, Cedar, multipliers, impact stories, or how to brief council and elders.`;
 
+// ──────────────────────────────────────────────────────────────
 // DOM ELEMENTS
+// ──────────────────────────────────────────────────────────────
 const chatBody = document.getElementById('chatBody');
 const chatInput = document.getElementById('chatInput');
 const sendBtn = document.getElementById('sendBtn');
@@ -855,7 +910,9 @@ const chatIntro = document.getElementById('chatIntro');
 const clearBtn = document.getElementById('clearBtn');
 const exportBtn = document.getElementById('exportBtn');
 
+// ──────────────────────────────────────────────────────────────
 // HELPERS
+// ──────────────────────────────────────────────────────────────
 function showIntro() {
   if (chatIntro && !chatBody.contains(chatIntro)) {
     chatBody.innerHTML = '';
@@ -937,7 +994,7 @@ function appendBotParagraphs(paragraphs) {
       if (i === 0) hideTyping();
       appendMessage('bot', p);
     }, delay);
-    delay += 600;
+    delay += 650;
   });
 }
 
@@ -951,7 +1008,9 @@ function getKeywordReply(text) {
   return DEFAULT_FALLBACK;
 }
 
+// ──────────────────────────────────────────────────────────────
 // HANDLERS
+// ──────────────────────────────────────────────────────────────
 function handleTopicClick(topicKey) {
   const topic = TOPIC_RESPONSES[topicKey];
   if (!topic) return;
@@ -959,7 +1018,7 @@ function handleTopicClick(topicKey) {
   showTyping();
   setTimeout(() => {
     appendBotParagraphs(topic.bot);
-  }, 800);
+  }, 700);
 }
 
 function handleSend() {
@@ -972,7 +1031,7 @@ function handleSend() {
     hideTyping();
     const reply = getKeywordReply(text);
     appendMessage('bot', reply);
-  }, 1000);
+  }, 900);
 }
 
 function handleClear() {
@@ -981,11 +1040,13 @@ function handleClear() {
 }
 
 function handleExport() {
-  // Simple print-to-PDF as a placeholder for real export
+  // simple print-to-PDF placeholder
   window.print();
 }
 
+// ──────────────────────────────────────────────────────────────
 // EVENT LISTENERS
+// ──────────────────────────────────────────────────────────────
 sendBtn.addEventListener('click', handleSend);
 
 chatInput.addEventListener('keydown', e => {
